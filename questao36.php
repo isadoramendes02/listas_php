@@ -22,8 +22,35 @@
         <option value= "n2"> Comércio </option>
         <option value= "n3"> Indústria </option>
         </select><br><br>
+
+        <label>Digite o valor de KW/h:</label>
+        <input type="number" name="valor" step="any" required><br><br>
         
     <button type="submit"> Enviar </button> 
 </form>
+<?php 
+if (isset($_GET['cliente']) && isset($_GET['valor'])){
+    $cliente = $_GET['cliente'];
+    $valor = (float)$_GET['valor'];
+
+    $resultado = 0;
+
+    if ($cliente == "n1"){
+        $resultado = $valor * 0.60;
+    }
+    elseif ($cliente == "n2"){
+        $resultado = $valor * 0.48;
+    }
+    elseif ($cliente == "n3"){
+        $resultado = $valor * 1.29;
+    }
+    else {
+        echo "<h2>Opção inválida</h2>";
+    }
+    
+    echo "<hr>";
+    echo "<h2>Valor da conta de luz: R$ <span style='color:green;'>$resultado</span></h2>";
+}
+?>
 </body>
 </html>
